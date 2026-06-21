@@ -9,3 +9,18 @@ services:
         exclude:
             - '../src/Kernel.php'
             - '../src/Domain/Entity/'
+
+    App\Domain\Repository\PatientRepositoryInterface:
+        class: App\Infrastructure\Persistence\DoctrinePatientRepository
+
+    App\Domain\Repository\FoodRepositoryInterface:
+        class: App\Infrastructure\Persistence\DoctrineFoodRepository
+
+    App\Domain\Repository\MealRepositoryInterface:
+        class: App\Infrastructure\Persistence\DoctrineMealRepository
+
+    App\Domain\Repository\MealFoodRepositoryInterface:
+        class: App\Infrastructure\Persistence\DoctrineMealFoodRepository
+
+    App\Domain\Repository\UserRepositoryInterface:
+        class: App\Infrastructure\Persistence\DoctrineUserRepository
