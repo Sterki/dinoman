@@ -1,0 +1,27 @@
+# ── Secrets ───────────────────────────────────────────────────────────────────
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ── PHP / Symfony ─────────────────────────────────────────────────────────────
+backend/vendor/
+backend/var/cache/
+backend/var/log/
+backend/var/sessions/
+backend/.php-cs-fixer.cache
+backend/.phpunit.cache/
+
+# ── Node / Frontend ───────────────────────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/coverage/
+
+# ── OS & editor ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
