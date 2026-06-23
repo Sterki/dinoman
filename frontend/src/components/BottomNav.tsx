@@ -1,13 +1,16 @@
+import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 
-const tabs = [
-  { to: '/',         icon: '🏠', label: 'Inicio' },
-  { to: '/meals',    icon: '🍽️', label: 'Comidas' },
-  { to: '/foods',    icon: '🥗', label: 'Alimentos' },
-  { to: '/patients', icon: '👤', label: 'Pacientes' },
-] as const
-
 export function BottomNav() {
+  const { t } = useTranslation()
+
+  const tabs = [
+    { to: '/',         icon: '🏠', label: t('nav.home') },
+    { to: '/meals',    icon: '🍽️', label: t('nav.meals') },
+    { to: '/foods',    icon: '🥗', label: t('nav.foods') },
+    { to: '/patients', icon: '👤', label: t('nav.patients') },
+  ] as const
+
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-slate-200 safe-area-bottom">
       <ul className="flex h-16 max-w-lg mx-auto">

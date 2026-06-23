@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../lib/api'
 import { AppLayout } from '../components/AppLayout'
@@ -12,6 +13,7 @@ import { useMealFoods } from '../hooks/useMealFoods'
 import type { Meal, MealFood } from '../types'
 
 export function MealDetailPage() {
+  const { t } = useTranslation()
   const { patientId, mealId } = useParams<{ patientId: string; mealId: string }>()
   const navigate = useNavigate()
 
@@ -41,17 +43,13 @@ export function MealDetailPage() {
     const removed = foods.find(f => f.id === mealFoodId)
     await removeMealFood(mealFoodId)
     setFoods(prev => prev.filter(f => f.id !== mealFoodId))
-    if (removed) {
-      setMeal(prev => prev ? { ...prev, totalCarbs: Math.max(0, prev.totalCarbs - removed.carbsCalculated) } : prev)
-    }
+    if (removed) setMeal(prev => prev ? { ...prev, totalCarbs: Math.max(0, prev.totalCarbs - removed.carbsCalculated) } : prev)
   }
 
-  if (loading) return <AppLayout title="Comida"><LoadingSpinner /></AppLayout>
-  if (!meal) return <AppLayout title="Comida"><EmptyState icon="❌" title="Comida no encontrada" /></AppLayout>
+  if (loading) return <AppLayout><LoadingSpinner /></AppLayout>
+  if (!meal) return <AppLayout><EmptyState icon="❌" title={t('meals.notFound')} /></AppLayout>
 
-  const eatenAtDate = new Date(meal.eatenAt).toLocaleString('es-ES', {
-    day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit',
-  })
+  const eatenAtDate = new Date(meal.eatenAt).toLocaleString(undefined, { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })
 
   return (
     <AppLayout title={meal.name}>
@@ -64,33 +62,25 @@ export function MealDetailPage() {
             </div>
             <div className="text-right">
               <p className="text-3xl font-bold text-blue-600">{meal.totalCarbs.toFixed(1)}g</p>
-              <p className="text-xs text-slate-400">carbohidratos</p>
+              <p className="text-xs text-slate-400">{t('meals.totalCarbs')}</p>
             </div>
           </div>
         </Card>
 
         {showAddFood ? (
-          <Card>
-            <AddFoodToMeal onAdd={handleAddFood} onCancel={() => setShowAddFood(false)} />
-          </Card>
+          <Card><AddFoodToMeal onAdd={handleAddFood} onCancel={() => setShowAddFood(false)} /></Card>
         ) : (
-          <Button fullWidth onClick={() => setShowAddFood(true)}>+ Agregar alimento</Button>
+          <Button fullWidth onClick={() => setShowAddFood(true)}>+ {t('foods.addFood')}</Button>
         )}
 
         {foods.length > 0 ? (
-          <Card>
-            {foods.map(mf => (
-              <MealFoodItem key={mf.id} mealFood={mf} onRemove={handleRemoveFood} />
-            ))}
-          </Card>
+          <Card>{foods.map(mf => <MealFoodItem key={mf.id} mealFood={mf} onRemove={handleRemoveFood} />)}</Card>
         ) : (
-          !showAddFood && (
-            <EmptyState icon="🥗" title="Sin alimentos" description="Agrega alimentos para calcular carbohidratos." />
-          )
+          !showAddFood && <EmptyState icon="🥗" title={t('foods.noFoods')} description={t('foods.noFoodsDesc')} />
         )}
 
         <Button variant="secondary" fullWidth onClick={() => navigate(`/patients/${patientId}`)}>
-          ← Volver al historial
+          {t('meals.backToHistory')}
         </Button>
       </div>
     </AppLayout>
