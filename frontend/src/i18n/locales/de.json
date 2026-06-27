@@ -132,6 +132,17 @@
     "noData": "Keine Daten",
     "noDataDesc": "Keine Mahlzeiten in diesem Zeitraum erfasst."
   },
+  "scanner": {
+    "scanBarcode": "Barcode scannen",
+    "title": "Produkt scannen",
+    "pointAtBarcode": "Kamera auf den Barcode des Produkts richten",
+    "detected": "Code erkannt!",
+    "fetchingProduct": "Produkt wird gesucht...",
+    "autoFilled": "Produktdaten",
+    "productNotFound": "Produkt nicht in der Datenbank gefunden. Bitte Daten manuell eingeben.",
+    "noCarbs": "Dieses Produkt hat keine Kohlenhydratangaben. Bitte Wert manuell eingeben.",
+    "cameraError": "Kamera konnte nicht geöffnet werden. Bitte Geräteberechtigungen prüfen."
+  },
   "errors": {
     "nameRequired": "Name ist erforderlich.",
     "carbsRequired": "Kohlenhydrate pro 100g sind erforderlich.",
