@@ -112,7 +112,8 @@
     "gramsConsumedPlaceholder": "z.B. 120",
     "addToMeal": "Hinzufügen",
     "carbsPreviewLabel": "Kohlenhydrate",
-    "removeFood": "Entfernen"
+    "removeFood": "Entfernen",
+    "recentFoods": "Zuletzt hinzugefügt"
   },
   "dashboard": {
     "title": "Start",
@@ -141,7 +142,8 @@
     "autoFilled": "Produktdaten",
     "productNotFound": "Produkt nicht in der Datenbank gefunden. Bitte Daten manuell eingeben.",
     "noCarbs": "Dieses Produkt hat keine Kohlenhydratangaben. Bitte Wert manuell eingeben.",
-    "cameraError": "Kamera konnte nicht geöffnet werden. Bitte Geräteberechtigungen prüfen."
+    "cameraError": "Kamera konnte nicht geöffnet werden. Bitte Geräteberechtigungen prüfen.",
+    "creatingFood": "Lebensmittel wird gespeichert..."
   },
   "errors": {
     "nameRequired": "Name ist erforderlich.",

@@ -112,7 +112,8 @@
     "gramsConsumedPlaceholder": "Ej: 120",
     "addToMeal": "Agregar",
     "carbsPreviewLabel": "de carbohidratos",
-    "removeFood": "Eliminar"
+    "removeFood": "Eliminar",
+    "recentFoods": "Recientes"
   },
   "dashboard": {
     "title": "Inicio",
@@ -141,7 +142,8 @@
     "autoFilled": "Datos del producto",
     "productNotFound": "Producto no encontrado en la base de datos. Completa los datos manualmente.",
     "noCarbs": "Este producto no tiene información de carbohidratos. Completa el valor manualmente.",
-    "cameraError": "No se pudo acceder a la cámara. Verifica los permisos del dispositivo."
+    "cameraError": "No se pudo acceder a la cámara. Verifica los permisos del dispositivo.",
+    "creatingFood": "Guardando alimento..."
   },
   "errors": {
     "nameRequired": "El nombre es obligatorio.",
