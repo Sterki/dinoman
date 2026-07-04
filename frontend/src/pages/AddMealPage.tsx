@@ -45,6 +45,8 @@ export function AddMealPage() {
     if (removed) setCreatedMeal(prev => prev ? { ...prev, totalCarbs: Math.max(0, prev.totalCarbs - removed.carbsCalculated) } : prev)
   }
 
+
+  
   const totalCarbs = foods.reduce((s, mf) => s + mf.carbsCalculated, 0)
 
   if (!createdMeal) {
