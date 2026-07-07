@@ -1,17 +1,26 @@
 #!/bin/sh
 set -e
 
-# Instala dependencias de Composer si vendor/ no existe todavía.
-if [ ! -f /app/vendor/autoload.php ]; then
-    echo "→ Instalando dependencias de Composer..."
-    composer install --no-interaction --prefer-dist --no-scripts
-    echo "→ Dependencias instaladas."
-fi
+# Sincroniza dependencias. Update regenera el lock file si composer.json fue modificado.
+echo "→ Sincronizando dependencias de Composer..."
+composer update --no-interaction --prefer-dist --no-scripts
+echo "→ Dependencias sincronizadas."
 
-# Crea los directorios de Symfony y les da permisos de escritura.
-# Necesario porque el volumen backend_var se monta con propietario root
-# pero PHP-FPM corre como www-data.
+# Limpia la caché de Symfony (puede tener archivos viejos con permisos de root).
+echo "→ Limpiando caché..."
+rm -rf /app/var/cache/*
+
+# Crea directorios necesarios y da permisos totales al proceso PHP-FPM (www-data).
 mkdir -p /app/var/cache /app/var/log /app/var/sessions
 chmod -R 777 /app/var
+
+# Precalienta la caché ya con los permisos correctos.
+echo "→ Precalentando caché de Symfony..."
+php bin/console cache:warmup --no-interaction 2>/dev/null || true
+chmod -R 777 /app/var
+
+# Ejecuta migraciones pendientes.
+echo "→ Ejecutando migraciones..."
+php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration || true
 
 exec "$@"
