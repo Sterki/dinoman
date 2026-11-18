@@ -1,0 +1,32 @@
+security:
+    password_hashers:
+        App\Domain\Entity\User:
+            algorithm: auto
+
+    providers:
+        api_token_provider:
+            entity:
+                class: App\Domain\Entity\User
+                property: apiToken
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        api:
+            pattern: ^/api
+            stateless: true
+            custom_authenticators:
+                - App\Security\ApiTokenAuthenticator
+
+    access_control:
+        - { path: ^/api/health,       roles: PUBLIC_ACCESS }
+        - { path: ^/api/auth/login,   roles: PUBLIC_ACCESS }
+        - { path: ^/api/auth/register, roles: PUBLIC_ACCESS }
+        - { path: ^/api,              roles: ROLE_USER }
+
+when@test:
+    security:
+        password_hashers:
+            App\Domain\Entity\User:
+                algorithm: plaintext

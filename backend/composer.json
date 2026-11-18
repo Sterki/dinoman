@@ -9,11 +9,15 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/doctrine-bundle": "^2.13",
+        "doctrine/doctrine-migrations-bundle": "^3.4",
         "doctrine/orm": "^3.3",
         "nelmio/cors-bundle": "^2.5",
         "symfony/console": "7.*",
         "symfony/dotenv": "7.*",
         "symfony/framework-bundle": "7.*",
+        "symfony/password-hasher": "7.*",
+        "symfony/security-bundle": "7.*",
+        "symfony/uid": "7.*",
         "symfony/var-exporter": "7.*",
         "symfony/yaml": "7.*"
     },
@@ -35,7 +39,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "App\\Migrations\\": "migrations/"
         }
     },
     "autoload-dev": {
